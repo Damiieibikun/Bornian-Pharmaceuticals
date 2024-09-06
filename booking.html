@@ -1,0 +1,366 @@
+<!doctype html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="out/output.css" rel="stylesheet">
+    <title>Bornian Pharmaceuticals | Home</title>
+    <style>
+        .book:hover {
+            color: #2563EB !important;
+        }
+        
+        #bookingForm {
+            padding: 20px;
+        }
+        
+        #otherconditions {
+            height: 200px;
+        }
+        
+        .errorInput {
+            border: 1px solid red;
+        }
+        
+        #error-msg {
+            color: red;
+        }
+        
+        .errorS {
+            color: red;
+        }
+        
+        #loader {
+            height: 70vh
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="lg:flex justify-between items-center py-4 px-1 hidden">
+        <div id="logo" class="text-4xl uppercase"><span class="text-blue-600">Born</span>ian</div>
+        <div>
+            <ul class="flex gap-5 text-[16px]">
+                <li>
+                    <a href="index.html" class="hover:text-blue-600 hover:border-b-2 p-2 hover:border-blue-600">Home</a>
+                </li>
+                <li>
+                    <a href="index.html#about" class="hover:text-blue-600 hover:border-b-2 p-2 hover:border-blue-600">About</a>
+                </li>
+                <li>
+                    <a href="index.html#testimonies" class="hover:text-blue-600 hover:border-b-2 p-2 hover:border-blue-600">Client Testimonies</a>
+                </li>
+            </ul>
+        </div>
+        <div>
+            <a href="booking.html">
+                <button class="btn book bg-blue-600   hover:border-blue-600 text-white">
+                    Book Appointment
+                </button>
+            </a>
+        </div>
+
+    </nav>
+    <!-- // responsive nav -->
+    <nav class="lg:hidden justify-between items-center py-4 px-1 flex">
+        <div id="logo" class="text-4xl uppercase"><span class="text-blue-600">Born</span>ian</div>
+
+        <button class="btn" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight"><svg xmlns="http://www.w3.org/2000/svg" width="35" height="35" fill="currentColor" class="bi bi-list text-blue-500" viewBox="0 0 16 16">
+            <path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5m0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5"/>
+          </svg></button>
+
+        <div class="offcanvas offcanvas-end bg-gradient-to-bl from-white to-blue-200 text-gray-800" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+            <div class="offcanvas-header">
+                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+            </div>
+            <div class="offcanvas-body">
+                <ul class="flex flex-col gap-5 text-[17px]">
+                    <li>
+                        <a href="index.html" class="hover:text-blue-600 hover:border-b-2 p-2 hover:border-blue-600">Home</a>
+                    </li>
+                    <li>
+                        <a href="index.html#about" class="hover:text-blue-600 hover:border-b-2 p-2 hover:border-blue-600">About</a>
+                    </li>
+                    <li>
+                        <a href="index.html#testimonies" class="hover:text-blue-600 hover:border-b-2 p-2 hover:border-blue-600">Client Testimonies</a>
+                    </li>
+                    <li>
+                        <a href="booking.html">
+                            <button class="btn book bg-blue-600   hover:border-blue-600 text-white">
+                                Book Appointment
+                            </button>
+                        </a>
+
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <nav aria-label="breadcrumb" class="px-4">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Booking</li>
+        </ol>
+    </nav>
+
+    <!-- // start here -->
+    <section id="bookingDetails" class="container">
+
+        <form action="" class="mt-4 flex flex-col gap-4 relative card mx-auto" id="bookingForm" style="width: 95%;">
+            <!-- // personal -->
+            <p class="text-[12px] hidden top-0 m-0" id="error-msg">Kindly fill required fields *</p>
+            <h3 class="text-3xl">Personal Information <span class="errorS">*</span></h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="firstname" placeholder="First Name">
+                    <label for="firstname">First Name</label>
+                </div>
+                <div class="form-floating">
+                    <input type="text" class="form-control" id="lastname" placeholder="Last Name">
+                    <label for="lastname">Last Name</label>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div class="form-floating relative">
+                    <input type="email" class="form-control" id="email" placeholder="name@example.com">
+                    <label for="email">Email address</label>
+                    <p class="absolute m-0 text-[12px] bottom-[-1] errorS hidden" id="errorEm">Invalid email</p>
+                </div>
+                <div class="form-floating relative">
+                    <input type="text" class="form-control" id="phonenumber" placeholder="phonenumber">
+                    <label for="phonenumber">Phone Number</label>
+                    <p class="absolute m-0 text-[12px] bottom-[-1] errorS hidden" id="errorNum">Invalid number</p>
+                </div>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <select name="gender" id="gender" class="border-1 p-2">
+                    <option value="">Select Gender</option>
+                    <option value="male">Male</option>
+                    <option value="female">Female</option>
+                    <option value="other">Other</option>
+                </select>
+
+                <div class="form-floating ">
+                    <input type="number" class="form-control" id="age" placeholder="age" min="0" max="150">
+                    <label for="age">Age</label>
+                </div>
+            </div>
+
+            <!-- medical -->
+            <h3 class="text-3xl">Medical Information</h3>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+                <div class="mb-3">
+                    <label class="form-label">Select symptoms you frequently experience</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="option1" id="fever">
+                        <label class="form-check-label" for="fever">
+                            Fever
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="option2" id="chestpain">
+                        <label class="form-check-label" for="chestpain">
+                            Chest Pain
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="option3" id="shortnessofbreath">
+                        <label class="form-check-label" for="shortnessofbreath">
+                            Shortness of Breath
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="option4" id="severeheadache">
+                        <label class="form-check-label" for="severeheadache">
+                            Severe Headache
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="option5" id="abdominalpain">
+                        <label class="form-check-label" for="abdominalpain">
+                            Abdominal Pain
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="option6" id="dizzinessfainting">
+                        <label class="form-check-label" for="dizzinessfainting">
+                            Dizziness or Fainting
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="option7" id="persistentcough">
+                        <label class="form-check-label" for="persistentcough">
+                            Persistent Cough
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="option8" id="nauseavomiting">
+                        <label class="form-check-label" for="nauseavomiting">
+                            Nausea or Vomiting
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="option9" id="weightloss">
+                        <label class="form-check-label" for="weightloss">
+                            Unexplained Weight Loss
+                        </label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" value="option10" id="rash">
+                        <label class="form-check-label" for="rash">
+                            Rash
+                        </label>
+                    </div>
+                </div>
+
+                <select name="symptomduration" id="symptomduration" class="border-1 p-2">
+                    <option value="">Select Duration of symptoms</option>
+                    <option value="0">Less than 24hrs - 2 days</option>
+                    <option value="1">Between 3 to 5 Days</option>
+                    <option value="2">A week or Over</option>
+                </select>
+            </div>
+
+            <div class="form-floating">
+                <textarea class="form-control" placeholder="other medical conditions" id="otherconditions" style="padding-top: 60px;"></textarea>
+                <label for="otherconditions">Other medical conditions, <br>please specify:</label>
+            </div>
+
+            <!-- // Appointment -->
+
+            <div id="appointment">
+                <h3 class="text-3xl">Appointment Booking <span class="errorS">*</span> </h3>
+            </div>
+
+            <select name="physician" id="physician" class="border-1 p-2">
+                <option value="">Select your prefered physician</option>
+                <option value="General Practitioner">General Practitioner</option>
+                <option value="Cardiologist">Cardiologist</option>
+                <option value="Neurologist">Neurologist</option>
+                <option value="Gynecologist">Gynecologist</option>
+                <option value="Oncologist">Oncologist</option>
+                <option value="Dermatologist">Dermatologist</option>
+            </select>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 items-center">
+                <div>
+                    <label for="date" class="font-bold">Choose a Date</label>
+                    <br>
+                    <input type="date" name="" id="date" class="p-2">
+                </div>
+                <div>
+                    <label for="time" class="font-bold">Choose Time</label>
+                    <br>
+                    <input type="time" id="time" class="p-2">
+                </div>
+            </div>
+
+            <button type="submit" class="btn btn-primary bg-blue-600 mt-5" style="align-self: center;">Check Availability</button>
+
+        </form>
+
+    </section>
+
+    <!-- //... -->
+
+    <!-- loader// -->
+    <div class="flex-col justify-content-center items-center hidden h-[80vh]" id="loader">
+        <p class="text-4xl mb-3">Checking...</p>
+        <div class="spinner-border text-primary" role="status">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
+    <!-- // Availiable doctors-->
+
+    <div class="flex-col items-center justify-center gap-12 hidden" id="availableDocs" style="min-height: 70vh;">
+        <div id="quickDignosis" class="card mx-auto flex justify-center items-center min-h-[200px] bg-gradient-to-bl from-white to-blue-200" style="padding: 20px; width: 95%;"></div>
+        <h2 id="noDoctors" class="text-center text-4xl container">Unfortunately, we currently dont have doctors <br>availiable for the selected date and time</h2>
+
+        <div id="doctors" class="hidden">
+            <p class="text-3xl text-center" style="margin-bottom: 20px;">Availiable Doctors</p>
+            <div id="doctorsCard" class="flex flex-wrap gap-4 justify-center"></div>
+        </div>
+    </div>
+
+    <!-- // Booking Details-->
+
+    <div class="flex-col items-center justify-center gap-12 hidden" id="bookingReciept" style="min-height: 70vh;">
+        <div id="appointmentCard" class="flex flex-wrap gap-4 justify-center">
+
+        </div>
+    </div>
+    <!-- // -->
+
+
+
+
+
+    <footer class="mt-[60px] bg-gray-50 ">
+        <div class="container grid grid-cols-1 md:grid-cols-3 py-8 md:gap-3 text-center gap-12 ">
+            <div class="md:text-left ">
+                <p class="text-4xl uppercase "><span class="text-blue-600 ">Born</span>ian</p>
+            </div>
+            <div>
+                <ul class="flex flex-col gap-3 text-[14px] md:text-left ">
+                    <li>
+                        <a href="index.html " class="hover:text-blue-600 hover:border-b-2 p-2 hover:border-blue-600 font-bold ">Home</a>
+                    </li>
+                    <li>
+                        <a href="index.html#about " class="hover:text-blue-600 hover:border-b-2 p-2 hover:border-blue-600 ">About</a>
+                    </li>
+                    <li>
+                        <a href="index.html#testimonies " class="hover:text-blue-600 hover:border-b-2 p-2 hover:border-blue-600 ">Client Testimonies</a>
+                    </li>
+                    <li>
+                        <a href="booking.html " class="hover:text-blue-600 hover:border-b-2 p-2 hover:border-blue-600 ">Book Appointment</a>
+                    </li>
+                </ul>
+            </div>
+            <div>
+                <p class="font-bold mb-3 ">Contact Information</p>
+                <ul class="flex flex-col gap-3 text-[14px] md:text-left items-center md:items-start ">
+                    <li class="flex gap-3 items-start ">
+                        <svg xmlns="http://www.w3.org/2000/svg " width="18 " height="18 " fill="currentColor " class="bi bi-geo-alt-fill text-blue-600 " viewBox="0 0 16 16 ">
+                            <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10m0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6 "/>
+                          </svg>
+                        <span>123 someplace, somewhere, somecity</span>
+                    </li>
+                    <li class="flex gap-3 items-start ">
+                        <svg xmlns="http://www.w3.org/2000/svg " width="18 " height="18 " fill="currentColor " class="bi bi-telephone-fill text-blue-600 " viewBox="0 0 16 16 ">
+                            <path fill-rule="evenodd " d="M1.885.511a1.745 1.745 0 0 1 2.61.163L6.29 2.98c.329.423.445.974.315 1.494l-.547 2.19a.68.68 0 0 0 .178.643l2.457 2.457a.68.68 0 0 0 .644.178l2.189-.547a1.75 1.75 0 0 1 1.494.315l2.306 1.794c.829.645.905
+                1.87.163 2.611l-1.034 1.034c-.74.74-1.846 1.065-2.877.702a18.6 18.6 0 0 1-7.01-4.42 18.6 18.6 0 0 1-4.42-7.009c-.362-1.03-.037-2.137.703-2.877z "/>
+                          </svg>
+                        <span>+(123)-456-789</span>
+                    </li>
+                    <li class="flex gap-3 items-start ">
+                        <svg xmlns="http://www.w3.org/2000/svg " width="18 " height="18 " fill="currentColor " class="bi bi-envelope-at-fill text-blue-600 " viewBox="0 0 16 16 ">
+                            <path d="M2 2A2 2 0 0 0 .05 3.555L8 8.414l7.95-4.859A2 2 0 0 0 14 2zm-2 9.8V4.698l5.803 3.546zm6.761-2.97-6.57 4.026A2 2 0 0 0 2 14h6.256A4.5 4.5 0 0 1 8 12.5a4.49 4.49 0 0 1 1.606-3.446l-.367-.225L8 9.586zM16 9.671V4.697l-5.803
+                3.546.338.208A4.5 4.5 0 0 1 12.5 8c1.414 0 2.675.652 3.5 1.671 "/>
+                            <path d="M15.834 12.244c0 1.168-.577 2.025-1.587 2.025-.503 0-1.002-.228-1.12-.648h-.043c-.118.416-.543.643-1.015.643-.77 0-1.259-.542-1.259-1.434v-.529c0-.844.481-1.4 1.26-1.4.585 0 .87.333.953.63h.03v-.568h.905v2.19c0 .272.18.42.411.42.315
+                0 .639-.415.639-1.39v-.118c0-1.277-.95-2.326-2.484-2.326h-.04c-1.582 0-2.64 1.067-2.64 2.724v.157c0 1.867 1.237 2.654 2.57 2.654h.045c.507 0 .935-.07 1.18-.18v.731c-.219.1-.643.175-1.237.175h-.044C10.438 16 9 14.82 9 12.646v-.214C9 10.36 10.421
+                9 12.485 9h.035c2.12 0 3.314 1.43 3.314 3.034zm-4.04.21v.227c0 .586.227.8.581.8.31 0 .564-.17.564-.743v-.367c0-.516-.275-.708-.572-.708-.346 0-.573.245-.573.791 "/>
+                          </svg>
+                        <span>bornianpharma@somemail.com</span>
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+
+    </footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js " integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz " crossorigin="anonymous "></script>
+    <script src="out/index.js"></script>
+</body>
+
+</html>
